@@ -1,15 +1,30 @@
 // a shader variable
 let theShader;
-
-function preload(){
+let socket = io.connect('http://localhost:8080');
+ 
+function preload() {
   // load the shader
   theShader = loadShader('uniform.vert', 'uniform.frag');
 }
 
 function setup() {
-  // shaders require WEBGL mode to work
+ // shaders require WEBGL mode to work
   createCanvas(windowWidth, windowHeight, WEBGL);
+  // setShaders();
   noStroke();
+      window.setTimeout(function() {
+        if (!keysActive) {
+            cmArea.style.width = "1200px";
+            jsCmArea.style.width = "1200px";
+            jsConsoleArea.setAttribute("style", "display:block;");
+            scdArea.style.display = "none";
+            scdConsoleArea.setAttribute("style", "display:none;");
+            jsCmArea.style.height = "685px";
+            jsArea.style.display = "block";
+            displayMode = "js";
+            autoRedraw = true;
+        }
+    }, 1000);
 }
 
 function draw() {
